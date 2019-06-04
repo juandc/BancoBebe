@@ -1,15 +1,20 @@
 {
   "name": "bancobebe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React PWA with SSR and Auth. Without Next, CRA, or Gatsby.",
   "main": "index.js",
   "scripts": {
-    "server:build:dev": "webpack --config config/webpack.server.js --mode development",
-    "server:start:dev": "nodemon build/server",
-    "server:dev": "yarn server:build:dev && yarn server:start:dev & yarn server:build:dev -- --watch",
-    "server:build:prod": "webpack --config config/webpack.server.js --mode production",
-    "server:start:prod": "node build/server",
-    "server:prod": "yarn server:build:prod && yarn server:start:prod"
+    "build:server:dev": "webpack --config config/webpack.server.js --mode development",
+    "build:browser:dev": "webpack --config config/webpack.browser.js --mode development",
+    "build:dev": "yarn build:browser:dev && yarn build:server:dev",
+    "build:watch": "concurrently \"yarn build:browser:dev -- --watch\" \"yarn build:server:dev -- --watch\"",
+    "serve:dev": "nodemon build/server",
+    "start:dev": "yarn build:dev && concurrently \"yarn serve:dev\" \"yarn build:watch\"",
+    "build:server": "webpack --config config/webpack.server.js --mode production",
+    "build:browser": "webpack --config config/webpack.browser.js --mode production",
+    "build": "yarn build:browser && yarn build:server",
+    "serve": "node build/server",
+    "start": "yarn build && yarn serve"
   },
   "repository": "git@github.com:juandc/BancoBebe.git",
   "author": "Juan David Castro <me@juandc.co>",
