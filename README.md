@@ -8,11 +8,11 @@ This was complicated. I'm a fan of microservices, but in this case the facility 
 These are my initial thoughts:
 
 - SSR
-- Data Storage (and API) with Node.js MongoDB
-- Authentication logic using Cookies :cookie:
-- Data come straight from Node files that connect to Mongo (really cool :sunglasses:)
-- Less importance data could be fetched from the client to an API (Long Live This :raised_hands:)
-- Landing Pages could be SPAs, but not sure... :thinking:
+- Data Storage (and API) using Node.js and MongoDB
+- Authentication logic with Cookies 🍪
+- Data come straight from Node files that connect to Mongo (really cool 😎)
+- Less importance data could be fetched from the client to an API (GraphQL? Long live this 🙌)
+- Landing Pages could be SPAs, but not sure... 🤔
 
 The deal is how to do this! :sweat_smile:
 
