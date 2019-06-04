@@ -1,6 +1,21 @@
 # BancoBebe
 BB: Somos tu mamá - React Webapp - SSR - PWA - Without Next, CRA, or Gatsby.
 
+## SPA vs. SSR
+
+This was complicated. I'm a fan of microservices, but in this case the facility and advantages of monorepos for the API and rendering from the server were higher.
+
+These are my initial thoughts:
+
+- SSR
+- Data Storage (and API) with Node.js MongoDB
+- Authentication logic using Cookies :cookie:
+- Data come straight from Node files that connect to Mongo (really cool :sunglasses:)
+- Less importance data could be fetched from the client to an API (Long Live This :raised_hands:)
+- Landing Pages could be SPAs, but not sure... :thinking:
+
+The deal is how to do this! :sweat_smile:
+
 ## Design System Principles
 
 All products (just one, by now 😅) should follow these simple rules:
