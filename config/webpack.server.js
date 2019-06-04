@@ -4,7 +4,7 @@ const baseConfig = require('./webpack.base.js');
 
 const config = {
   target: 'node',
-  entry:  ['./src/server.js'],
+  entry:  ['./src/server/index.js'],
   output:  {
     filename: 'server.js',
     path: path.resolve(__dirname, '../build'),
