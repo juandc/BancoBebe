@@ -1,0 +1,35 @@
+{
+  "name": "bancobebe",
+  "version": "0.0.1",
+  "description": "React PWA with SSR and Auth. Without Next, CRA, or Gatsby.",
+  "main": "index.js",
+  "scripts": {
+    "server:build:dev": "webpack --config config/webpack.server.js --mode development",
+    "server:start:dev": "nodemon build/server",
+    "server:dev": "yarn server:build:dev && yarn server:start:dev & yarn server:build:dev -- --watch",
+    "server:build:prod": "webpack --config config/webpack.server.js --mode production",
+    "server:start:prod": "node build/server",
+    "server:prod": "yarn server:build:prod && yarn server:start:prod"
+  },
+  "repository": "git@github.com:juandc/BancoBebe.git",
+  "author": "Juan David Castro <me@juandc.co>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "express": "^4.17.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.19.1"
+  }
+}
