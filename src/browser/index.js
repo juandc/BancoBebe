@@ -11,4 +11,6 @@ const Browser = (
   </div>
 );
 
-ReactDOM.hydrate(Browser, document.getElementById('app'));
+const root = document.getElementById('app');
+
+ReactDOM.hydrate(Browser, root);

@@ -8,7 +8,7 @@
     "build:browser:dev": "webpack --config config/webpack.browser.js --mode development",
     "build:dev": "yarn build:browser:dev && yarn build:server:dev",
     "build:watch": "concurrently \"yarn build:browser:dev -- --watch\" \"yarn build:server:dev -- --watch\"",
-    "serve:dev": "nodemon build/server",
+    "serve:dev": "nodemon build/server --watch build/*",
     "start:dev": "yarn build:dev && concurrently \"yarn serve:dev\" \"yarn build:watch\"",
     "build:server": "webpack --config config/webpack.server.js --mode production",
     "build:browser": "webpack --config config/webpack.browser.js --mode production",

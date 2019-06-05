@@ -7,7 +7,7 @@ const config = {
   // context: __dirname,
   entry: ['./src/browser/index.js'],
   output: {
-    path: path.join(__dirname, '../public'),
+    path: path.join(__dirname, '../public/build'),
     filename: 'bundle.js',
     publicPath: '/',
     pathinfo: false, // ?
