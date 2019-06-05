@@ -8,8 +8,8 @@ const config = {
   entry: ['./src/browser/index.js'],
   output: {
     path: path.join(__dirname, '../public/build'),
-    filename: 'bundle.js',
-    publicPath: '/',
+    filename: '[name].js',
+    publicPath: '/public/build/',
     pathinfo: false, // ?
   },
   resolve: {

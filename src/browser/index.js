@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from '../App';
+import { loadableReady } from '@loadable/component'
+import App from '../app/App';
 
 const Browser = (
-  <div>
-    <h2>I am from the client!</h2>
-    <button onClick={() => console.log('AAAAAAAYYYYYY!')}>
-      AAAAAAAYYYYYY botonsito!
-    </button>
-  </div>
+  <App />
 );
 
-const root = document.getElementById('app');
-
-ReactDOM.hydrate(Browser, root);
+loadableReady(() => {
+  const root = document.getElementById('app');
+  ReactDOM.hydrate(Browser, root);
+});

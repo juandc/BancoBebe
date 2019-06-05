@@ -10,6 +10,7 @@ const config = {
   output:  {
     filename: 'server.js',
     path: path.resolve(__dirname, '../build'),
+    publicPath: '',
   },
   resolve: {
     extensions: ['.js', '.json']

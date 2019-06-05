@@ -3,9 +3,6 @@ import render from './utils/render';
 
 const router = Router();
 
-router.get('*', (req, res) => {
-  const result = render();
-  res.send(result);
-});
+router.get('/', render);
 
 export default router;

@@ -1,3 +1,5 @@
+const LoadablePlugin = require('@loadable/webpack-plugin');
+
 module.exports = {
   stats: {
     colors: true,
@@ -12,5 +14,8 @@ module.exports = {
         exclude: /node_modules/
       },
     ]
-  }
+  },
+  plugins: [
+    new LoadablePlugin(),
+  ],
 }
