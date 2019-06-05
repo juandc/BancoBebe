@@ -1,9 +1,11 @@
 const path = require('path');
 const merge = require('webpack-merge');
+const nodeExternals = require('webpack-node-externals');
 const baseConfig = require('./webpack.base.js');
 
 const config = {
   target: 'node',
+  externals: [nodeExternals()],
   entry:  ['./src/server/index.js'],
   output:  {
     filename: 'server.js',
@@ -11,6 +13,9 @@ const config = {
   },
   resolve: {
     extensions: ['.js', '.json']
+  },
+  optimization: {
+    minimize: true
   },
 }
 

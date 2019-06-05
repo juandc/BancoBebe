@@ -10,10 +10,10 @@ const config = {
     path: path.join(__dirname, '../public'),
     filename: 'bundle.js',
     publicPath: '/',
-    pathinfo: false,
+    pathinfo: false, // ?
   },
   resolve: {
-    extensions: ['.js', '.json', '.scss']
+    extensions: ['.js', '.json']
   },
   optimization: {
     minimize: true
