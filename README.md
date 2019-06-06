@@ -16,6 +16,15 @@ These are my initial thoughts:
 
 The deal is how to do this! :sweat_smile:
 
+## Frontend Architecture
+
+Tech and tools:
+
+- Express.js -> Server, DB logic, SSR and API
+- React -> (does it need explanation?)
+- Webpack + Babel -> ES6+ to JS in bundles
+- Webpack + loadable-components -> Code Splitting with ssr and no-ssr support
+
 ## Design System Principles
 
 All products (just one, by now 😅) should follow these simple rules:
