@@ -4,20 +4,14 @@ const nodeExternals = require('webpack-node-externals');
 const baseConfig = require('./webpack.base.js');
 
 const config = {
-  target: 'node',
-  externals: [nodeExternals()],
-  entry:  ['./src/server/index.js'],
+  entry:  ['./server/index.js'],
   output:  {
-    filename: 'server.js',
     path: path.resolve(__dirname, '../build'),
+    filename: 'server.js',
     publicPath: '',
   },
-  resolve: {
-    extensions: ['.js', '.json']
-  },
-  optimization: {
-    minimize: true
-  },
+  target: 'node',
+  externals: [nodeExternals()],
 }
 
 module.exports = merge(baseConfig, config);

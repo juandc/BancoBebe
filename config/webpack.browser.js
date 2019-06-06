@@ -4,20 +4,13 @@ const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.js');
 
 const config = {
-  // context: __dirname,
-  entry: ['./src/browser/index.js'],
+  entry: ['./browser/index.js'],
   output: {
     path: path.join(__dirname, '../public/build'),
-    filename: '[name].js',
-    publicPath: '/public/build/',
-    pathinfo: false, // ?
+    filename: '[name].js', // code splitting by loadable-components in (server/utils/render)
+    publicPath: '/public/build/', // must be equal to ChunkExtractor (server/utils/render)
   },
-  resolve: {
-    extensions: ['.js', '.json']
-  },
-  optimization: {
-    minimize: true
-  },
+  target: 'web',
 };
 
 module.exports = merge(baseConfig, config);

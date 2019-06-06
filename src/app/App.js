@@ -5,8 +5,8 @@ const AsyncPageWithSSR = loadable(() => import('./WithSSR'), {
   fallback: <div>loading with ssr...</div>,
 });
 const AsyncPageWithoutSSR = loadable(() => import('./WithoutSSR'), {
-  ssr: false,
   fallback: <div>loading without ssr...</div>,
+  ssr: false,
 });
 
 export default function App(props) {

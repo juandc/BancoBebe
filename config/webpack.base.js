@@ -1,11 +1,8 @@
+const path = require('path');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 
 module.exports = {
-  stats: {
-    colors: true,
-    reasons: true,
-    chunks: false
-  },
+  context: path.join(__dirname, '../src/'), // just for entries
   module: {
     rules: [
       {
@@ -15,7 +12,18 @@ module.exports = {
       },
     ]
   },
+  resolve: {
+    extensions: ['.js', '.json'] // server and browser handle the "same" files 
+  },
+  optimization: {
+    minimize: true
+  },
   plugins: [
     new LoadablePlugin(),
   ],
+  stats: {
+    colors: true,
+    reasons: true,
+    chunks: false // am I using chunks?
+  },
 }
