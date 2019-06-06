@@ -1,13 +1,10 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { loadableReady } from '@loadable/component'
-import App from '../app/App';
-
-const Browser = (
-  <App />
-);
+import getBrowserProviders from './getBrowserProviders';
 
 loadableReady(() => {
   const root = document.getElementById('app');
-  ReactDOM.hydrate(Browser, root);
+  const jsx = getBrowserProviders();
+
+  ReactDOM.hydrate(jsx, root);
 });

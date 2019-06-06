@@ -1,4 +1,5 @@
 import React from 'react';
+import { Switch, Route, Link } from 'react-router-dom'
 import loadable from '@loadable/component';
 
 const AsyncPageWithSSR = loadable(() => import('./WithSSR'), {
@@ -19,16 +20,24 @@ export default function App(props) {
   }, []);
   
   return (
-    <div>
-      <h2>I am from one {name}</h2>
-      <p>{number}</p>
-      <button onClick={() => setNumber(number+1)}>
-        Botonsito boniiiitoooo aayayayayayay!!
-      </button>
+    <Switch>
+      <>
+        <h2>I am from one {name}</h2>
+        <p>{number}</p>
+        <button onClick={() => setNumber(number+1)}>
+          Botonsito boniiiitoooo aayayayayayay!!
+        </button>
 
-      <AsyncPageWithSSR />
-      <AsyncPageWithoutSSR />
-    </div>
+        <AsyncPageWithSSR />
+        <AsyncPageWithoutSSR />
+
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+
+        <Route path='/' component={() => <h2>Home</h2>} exact />
+        <Route path='/about' component={() => <h2>About</h2>} />
+      </>
+    </Switch>
   );
   // return (
   //   <>
