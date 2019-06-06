@@ -3,8 +3,8 @@ import { loadableReady } from '@loadable/component'
 import getBrowserProviders from './getBrowserProviders';
 
 loadableReady(() => {
-  const serverData = window.__INITIAL_DATA__;
-  const jsx = getBrowserProviders({ serverData });
+  const initialData = window.__INITIAL_DATA__;
+  const jsx = getBrowserProviders({ initialData });
 
   const root = document.getElementById('app');
 

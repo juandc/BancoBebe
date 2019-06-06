@@ -1,5 +1,5 @@
 import React from 'react';
-// import Home from './layouts/landings/Home';
+import Home from './layouts/landings/Home';
 // import Blog from './layouts/blog/BlogList';
 // import Static from './layouts/landings/Static';
 
@@ -10,16 +10,14 @@ export default [
       path: '/',
       exact: true,
     },
-    component: () => <h2>Home</h2>,
+    component: Home,
     loadData: {
-      fromServer: false,
+      fromServer: true,
       dataType: 'HOME_DATA',
       normalizeData: (err, data) => { // not implemented
         if (err) return { err };
         console.log(data);
-        return {
-          ...data,
-        };
+        return data + ' normalized';
       }
     },
   }

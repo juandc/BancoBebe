@@ -2,13 +2,11 @@ import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import App from '../../app/App';
 import routes from '../../app/routes';
+import { DataProvider } from '../../shared/DataContext'
 
 export default async ({ location, context, getDataPromiseByDataType }) => {
-  let initialData = undefined;
-  
-  const matchRoute = routes.find(
-    route => location === route.location.path
-  );
+  let serverData = undefined;
+  const matchRoute = routes.find(route => location === route.location.path);
   
   if (
     matchRoute
@@ -16,18 +14,19 @@ export default async ({ location, context, getDataPromiseByDataType }) => {
     && !!matchRoute.loadData.fromServer
   ) {
     const dataPromise = getDataPromiseByDataType(matchRoute.loadData.dataType);
-    const data = await dataPromise();
-    initialData = data;
+    serverData = await dataPromise();
   }
 
   const jsx = (
     <StaticRouter location={location} context={context}>
-      <App initialData={initialData} />
+      <DataProvider initialData={serverData}>
+        <App />
+      </DataProvider>
     </StaticRouter>
   );
 
   return {
-    initialData,
+    serverData,
     jsx,
   };
 }

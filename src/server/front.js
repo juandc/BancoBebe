@@ -23,13 +23,13 @@ router.get('*', async (req, res) => {
   // ROUTER + DATA
   const location = req.url;
   const context = {};
-  const { initialData, jsx } = await getServerProviders({
+  const { serverData, jsx } = await getServerProviders({
     location,
     context,
     getDataPromiseByDataType: dataType => {
       const dataTypes = {
         'HOME_DATA': () => new Promise(resolve => {
-          setTimeout(() => resolve('this is the data from home'), 3000);
+          setTimeout(() => resolve('home data from server'), 300);
         }),
       };
       return dataTypes[dataType];
@@ -38,9 +38,7 @@ router.get('*', async (req, res) => {
 
   // Redirects
   if (context.url) {
-    res.writeHead(301, {
-      Location: context.url
-    });
+    res.writeHead(301, { Location: context.url });
     res.end();
   }
 
@@ -49,7 +47,7 @@ router.get('*', async (req, res) => {
   const content = renderToString(jsxWithCollectedChunks);
   const scriptTags = browserExtractor.getScriptTags();
 
-  const html = setHtml({ content, scriptTags, initialData });
+  const html = setHtml({ content, scriptTags, serverData });
 
   res.set('content-type', 'text/html');
   res.end(html);

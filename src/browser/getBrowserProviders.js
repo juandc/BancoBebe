@@ -1,9 +1,12 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { DataProvider } from '../shared/DataContext';
 import App from '../app/App';
 
-export default ({ serverData }) => (
+export default ({ initialData }) => (
   <BrowserRouter>
-    <App initialData={serverData} />
+    <DataProvider initialData={initialData}>
+      <App />
+    </DataProvider>
   </BrowserRouter>
 );
