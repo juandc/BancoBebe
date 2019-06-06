@@ -20,10 +20,12 @@ The deal is how to do this! :sweat_smile:
 
 Tech and tools:
 
-- Express.js -> Server, DB logic, SSR and API
-- React -> (does it need explanation?)
-- Webpack + Babel -> ES6+ to JS in bundles
-- Webpack + loadable-components -> Code Splitting with ssr and no-ssr support
+- Express.js -> Server, SSR, DB (data) logic, SSR and API...
+- React -> UI using renderToString and hydrate (streams are cool but does not support React Helmet or prefetching), some pages load data initially from the server, but it needs an API or something to load the same data just in case the page loads in the browser side (React Router Links), other pages just does not load daia from the server but in the browser with an API...
+- Webpack + Babel -> ES6+ to JS in bundles, for server and browser (check `config/webpack.*.js)...
+- Webpack + loadable-components -> Code Splitting with ssr and no-ssr support...
+
+> React.lazy still does not supports SSR...
 
 ## Design System Principles
 
