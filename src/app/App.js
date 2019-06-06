@@ -1,41 +1,44 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom'
 import loadable from '@loadable/component';
-
-const AsyncPageWithSSR = loadable(() => import('./WithSSR'), {
-  fallback: <div>loading with ssr...</div>,
-});
-const AsyncPageWithoutSSR = loadable(() => import('./WithoutSSR'), {
-  fallback: <div>loading without ssr...</div>,
-  ssr: false,
-});
+import routes from './routes';
 
 export default function App(props) {
-  const [name, setName] = React.useState('server');
-  const [number, setNumber] = React.useState(1);
-
-  React.useEffect(() => {
-    setName('client');
-    setNumber(number + 1);
-  }, []);
+  console.log(props)
+  const [initialData, setData] = React.useState(props.initialData);
   
+  // useEffect(() => {}, []) === browser
+  React.useEffect(() => {
+    if (initialData === undefined) {
+      setTimeout(() => {
+        setData('data from client')
+      }, 3000)
+    }
+  }, []);
+
   return (
     <Switch>
       <>
-        <h2>I am from one {name}</h2>
-        <p>{number}</p>
-        <button onClick={() => setNumber(number+1)}>
-          Botonsito boniiiitoooo aayayayayayay!!
-        </button>
-
-        <AsyncPageWithSSR />
-        <AsyncPageWithoutSSR />
-
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
 
-        <Route path='/' component={() => <h2>Home</h2>} exact />
-        <Route path='/about' component={() => <h2>About</h2>} />
+        {initialData || 'loading data'}
+
+        {routes.map(route => {
+          // route.loadData.getData(props.dataTypes)
+          
+          return (
+            <Route
+              key={route.name}
+              path={route.location.path}
+              exact={route.location.exact}
+              component={route.component}
+            />
+          );
+        })}
+
+        {/* <Route path='/' component={() => <h2>Home</h2>} exact />
+        <Route path='/about' component={() => <h2>About</h2>} /> */}
       </>
     </Switch>
   );

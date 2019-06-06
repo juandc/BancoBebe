@@ -7,7 +7,7 @@ import getServerProviders from './utils/getServerProviders';
 
 const router = Router();
 
-router.get('*', (req, res) => {
+router.get('*', async (req, res) => {
   // Just in case u need the server stats:
   // const serverStatsFile = path.resolve('./build/loadable-stats.json');
   // const serverExtractor = new ChunkExtractor({
@@ -20,10 +20,21 @@ router.get('*', (req, res) => {
     publicPath: '/public/build/',
   });
   
-  // ROUTER
+  // ROUTER + DATA
   const location = req.url;
   const context = {};
-  const jsx = getServerProviders({ location, context });
+  const { initialData, jsx } = await getServerProviders({
+    location,
+    context,
+    getDataPromiseByDataType: dataType => {
+      const dataTypes = {
+        'HOME_DATA': () => new Promise(resolve => {
+          setTimeout(() => resolve('this is the data from home'), 3000);
+        }),
+      };
+      return dataTypes[dataType];
+    },
+  });
 
   // Redirects
   if (context.url) {
@@ -32,13 +43,13 @@ router.get('*', (req, res) => {
     });
     res.end();
   }
-  
+
   // Loadable Components
   const jsxWithCollectedChunks = browserExtractor.collectChunks(jsx);
   const content = renderToString(jsxWithCollectedChunks);
   const scriptTags = browserExtractor.getScriptTags();
 
-  const html = setHtml({ content, scriptTags });
+  const html = setHtml({ content, scriptTags, initialData });
 
   res.set('content-type', 'text/html');
   res.end(html);

@@ -1,4 +1,4 @@
-export default function setHtml({ content, scriptTags }) {
+export default function setHtml({ content, scriptTags, initialData }) {
   return `
     <!DOCTYPE html>
     <html>
@@ -9,6 +9,9 @@ export default function setHtml({ content, scriptTags }) {
     <body>
       <div id="app">${content}</div>
       ${scriptTags}
+      <script>
+        window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};
+      </script>
     </body>
     </html>
   `;

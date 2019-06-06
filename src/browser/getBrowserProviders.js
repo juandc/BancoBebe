@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from '../app/App';
 
-export default () => (
+export default ({ serverData }) => (
   <BrowserRouter>
-    <App />
+    <App initialData={serverData} />
   </BrowserRouter>
 );
