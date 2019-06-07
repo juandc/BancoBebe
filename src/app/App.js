@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom'
-import loadable from '@loadable/component';
+// import loadable from '@loadable/component';
+import { DataContext } from '../shared/DataContext'
 import routes from './routes';
 
 export default function App(props) {
@@ -17,29 +18,33 @@ export default function App(props) {
 }
 
 function RoutesList({ routes }) {
+  const [data, setData] = React.useContext(DataContext);
+
   return routes.map(route => {
-    const RouteComponent = route.component;
+    // const RouteComponent = route.component;
 
     return (
       <Route
         key={route.name}
         path={route.location.path}
         exact={route.location.exact}
-        component={() => <RouteComponent />}
+        component={() => <RoutesListComponent {...{data, setData, route}} />}
       />
     );
   });
 }
 
-function RoutesListComponent({ name, location, component }) {
-  const RouteComponent = () => component;
-  
-  return (
-    <Route
-      key={name}
-      path={location.path}
-      exact={location.exact}
-      component={<RouteComponent />}
-    />
-  );
+function RoutesListComponent({ route, data, setData }) {
+  console.log(route, data)
+  React.useEffect(() => {
+    if (
+      (!!route.data.fromBrowser.loadIfNoInitialData && data === undefined)
+      || !!route.data.fromBrowser.iDontCareJustLoad
+    ) {
+      setData(route.data);
+    }
+  }, []);
+
+  return <p>route</p>
 }
+

@@ -4,18 +4,26 @@ import App from '../../app/App';
 import routes from '../../app/routes';
 import { DataProvider } from '../../shared/DataContext'
 
-export default async ({ location, context, getDataPromiseByDataType }) => {
+export default async ({ location, context, getDataAsync }) => {
   let serverData = undefined;
-  const matchRoute = routes.find(route => location === route.location.path);
+  const route = routes.find(route => location === route.location.path);
   
   if (
-    matchRoute
-    && matchRoute.loadData
-    && !!matchRoute.loadData.fromServer
+    route
+    && route.data !== undefined
+    && !!route.data.fromServer
   ) {
-    const dataPromise = getDataPromiseByDataType(matchRoute.loadData.dataType);
-    serverData = await dataPromise();
+    const data = await getDataAsync(route.loadData.dataType)();
+    serverData = route.data.normalize(data);
   }
+  // if (
+  //   matchRoute
+  //   && matchRoute.loadData
+  //   && !!matchRoute.loadData.fromServer
+  // ) {
+  //   const dataPromise = getDataPromiseByDataType(matchRoute.loadData.dataType);
+  //   serverData = await dataPromise();
+  // }
 
   const jsx = (
     <StaticRouter location={location} context={context}>

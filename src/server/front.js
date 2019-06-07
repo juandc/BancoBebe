@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { renderToString } from 'react-dom/server';
 import { ChunkExtractor } from '@loadable/server';
 import path from 'path';
+import { HOME_DATA } from '../shared/dataTypes';
 import setHtml from './utils/setHtml';
 import getServerProviders from './utils/getServerProviders';
 
@@ -26,13 +27,13 @@ router.get('*', async (req, res) => {
   const { serverData, jsx } = await getServerProviders({
     location,
     context,
-    getDataPromiseByDataType: dataType => {
-      const dataTypes = {
-        'HOME_DATA': () => new Promise(resolve => {
+    getDataAsync: dataType => {
+      const serverDataResolvers = {
+        [HOME_DATA]: () => new Promise(resolve => {
           setTimeout(() => resolve('home data from server'), 300);
         }),
       };
-      return dataTypes[dataType];
+      return serverDataResolvers[dataType];
     },
   });
 

@@ -12,7 +12,7 @@ import { useData } from '../../../shared/DataContext'
 //   };
 // }
 
-export default function Home({ initialData }) {
+export default function Home({ data }) {
   // const [homeData, setHomeData] = React.useState(initialData);
   // console.log({initialData,homeData});
 
@@ -24,17 +24,17 @@ export default function Home({ initialData }) {
   //   }
   // }, [])
 
-  const [data, setData] = useData({
-    browserUpdate: {
-      // iDontCareJustLoad: true,
-      ifInitialDataIsUndefined: true,
-      load: () => {
-        setTimeout(() => {
-          setData('home data from client');
-        }, 3000);
-      },
-    }
-  });
+  // const [data, setData] = useData({
+  //   browserUpdate: {
+  //     // iDontCareJustLoad: true,
+  //     ifInitialDataIsUndefined: true,
+  //     load: () => {
+  //       setTimeout(() => {
+  //         setData('home data from client');
+  //       }, 3000);
+  //     },
+  //   }
+  // });
 
   console.log(data);
   
@@ -44,7 +44,7 @@ export default function Home({ initialData }) {
       {!data ? 'loading...' : (
         <>
           <p>{data}</p>
-          <button onClick={() => setData('Any other thing')}>Change the text</button>
+          {/* <button onClick={() => setData('Any other thing')}>Change the text</button> */}
         </>
       )}
     </>

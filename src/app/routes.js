@@ -1,4 +1,5 @@
 import React from 'react';
+import { HOME_DATA } from '../shared/dataTypes'
 import Home from './layouts/landings/Home';
 // import Blog from './layouts/blog/BlogList';
 // import Static from './layouts/landings/Static';
@@ -11,6 +12,17 @@ export default [
       exact: true,
     },
     component: Home,
+    data: {
+      dataType: HOME_DATA,
+      fromServer: true,
+      fromBrowser: {
+        // iDontCareJustLoad: true, // ERRRRRROR!!!
+        loadIfNoInitialData: true,
+      },
+      normalize: data => ({
+        message: data || undefined,
+      }),
+    },
     loadData: {
       fromServer: true,
       dataType: 'HOME_DATA',
