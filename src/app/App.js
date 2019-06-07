@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom'
 // import loadable from '@loadable/component';
-import { useData } from '../shared/DataContext'
+import { usePageData } from '../shared/DataContext'
 import routes from './routes';
 
 export default function App(props) {
@@ -30,10 +30,8 @@ function RouteList({ routes }) {
   });
 }
 
-function RouteListComponent({ route }) {
-  const [pageData] = useData({ route });
-  console.log(pageData);
+function RouteListComponent({ route, route:{component:Component} }) {
+  const [pageData, setPageData] = usePageData({ route });
 
-  if (!pageData) return <p>Loading...</p>;
-  return <p>la</p>;
+  return <Component pageData={pageData} />;
 }
