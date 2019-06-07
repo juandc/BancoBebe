@@ -1,8 +1,8 @@
 {
   "name": "bancobebe",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React PWA with SSR and Auth. Without Next, CRA, or Gatsby.",
-  "main": "index.js",
+  "main": "src/server/index.js",
   "scripts": {
     "build:server:dev": "webpack --config config/webpack.server.js --mode development",
     "build:browser:dev": "webpack --config config/webpack.browser.js --mode development",

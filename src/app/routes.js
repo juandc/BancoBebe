@@ -1,5 +1,5 @@
 import React from 'react';
-import { HOME_DATA } from '../shared/dataTypes'
+import { HOME_DATA } from '../shared/dataTypes';
 import Home from './layouts/landings/Home';
 // import Blog from './layouts/blog/BlogList';
 // import Static from './layouts/landings/Static';
@@ -16,7 +16,7 @@ export default [
       dataType: HOME_DATA,
       fromServer: true,
       fromBrowser: {
-        // iDontCareJustLoad: true, // ERRRRRROR!!!
+        // iDontCareJustLoad: true,
         loadIfNoInitialData: true,
       },
       normalize: data => ({

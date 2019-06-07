@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import api from './api';
-import front from './front'
+import front from './front';
 
 const app = express();
 

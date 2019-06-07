@@ -1,7 +1,7 @@
+import path from 'path';
 import { Router } from 'express';
 import { renderToString } from 'react-dom/server';
 import { ChunkExtractor } from '@loadable/server';
-import path from 'path';
 import { HOME_DATA } from '../shared/dataTypes';
 import setHtml from './utils/setHtml';
 import getServerProviders from './utils/getServerProviders';

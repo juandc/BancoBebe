@@ -37,5 +37,3 @@ function RouteListComponent({ route }) {
   if (!pageData) return <p>Loading...</p>;
   return <p>la</p>;
 }
-
-RouteListComponent = React.memo(RouteListComponent);

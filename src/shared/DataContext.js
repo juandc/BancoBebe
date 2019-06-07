@@ -7,7 +7,9 @@ export function DataProvider({ initialData = undefined, dataResolvers, children 
 
   const setDataWithResolversAndNormalize = async ({ dataType, normalize }) => {
     const newData = await dataResolvers[dataType]();
-    return setData(normalize(newData));
+    const normalizedData = normalize(newData);
+    window.__CLIENT_DATA__ = normalizedData;
+    setData(normalize(newData));
   };
 
   console.log(data)
@@ -29,7 +31,7 @@ export const useData = ({ route }) => {
     () => {
       if (
         (!!fromBrowser.loadIfNoInitialData && data === undefined)
-        // || (!!fromBrowser.iDontCareJustLoad)
+        || (!!fromBrowser.iDontCareJustLoad && window.__CLIENT_DATA__ == undefined)
       ) {
         setData({ dataType, normalize });
       }
