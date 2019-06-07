@@ -6,14 +6,16 @@ import { HOME_DATA } from '../shared/dataTypes';
 
 export default ({ initialData }) => (
   <BrowserRouter>
-    <DataProvider initialData={initialData} dataResolvers={dataResolvers}>
+    <DataProvider initialData={initialData} dataResolvers={clientDataResolvers}>
       <App />
     </DataProvider>
   </BrowserRouter>
 );
 
-const dataResolvers = {
+const clientDataResolvers = {
   [HOME_DATA]: () => new Promise(resolve => {
-    setTimeout(() => resolve('home data from client'), 300);
+    setTimeout(() => resolve({
+      data: 'home data from client',
+    }), 300);
   }),
 };

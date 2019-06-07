@@ -36,15 +36,17 @@ function RoutesList({ routes }) {
 
 function RoutesListComponent({ route, data, setData }) {
   console.log(route, data)
+
   React.useEffect(() => {
     if (
       (!!route.data.fromBrowser.loadIfNoInitialData && data === undefined)
-      || !!route.data.fromBrowser.iDontCareJustLoad
+      || (!!route.data.fromBrowser.iDontCareJustLoad)
     ) {
       setData(route.data);
     }
-  }, []);
+  }, [route]);
 
   return <p>route</p>
 }
 
+RoutesListComponent = React.memo(RoutesListComponent);
