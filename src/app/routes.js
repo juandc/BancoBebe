@@ -12,7 +12,7 @@ export default [
       exact: true,
     },
     component: Home,
-    data: {
+    loadData: {
       dataType: HOME_DATA,
       fromServer: true,
       fromBrowser: {
@@ -20,17 +20,8 @@ export default [
         loadIfNoInitialData: true,
       },
       normalize: data => ({
-        message: data || undefined,
+        message: data.message || data,
       }),
-    },
-    loadData: {
-      fromServer: true,
-      dataType: 'HOME_DATA',
-      normalizeData: (err, data) => { // not implemented
-        if (err) return { err };
-        console.log(data);
-        return data + ' normalized';
-      }
     },
   }
 ];

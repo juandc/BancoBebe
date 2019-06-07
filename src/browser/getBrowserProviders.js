@@ -15,7 +15,7 @@ export default ({ initialData }) => (
 const clientDataResolvers = {
   [HOME_DATA]: () => new Promise(resolve => {
     setTimeout(() => resolve({
-      data: 'home data from client',
+      message: 'home data from client',
     }), 300);
   }),
 };

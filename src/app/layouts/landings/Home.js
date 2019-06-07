@@ -13,29 +13,6 @@ import { useData } from '../../../shared/DataContext'
 // }
 
 export default function Home({ data }) {
-  // const [homeData, setHomeData] = React.useState(initialData);
-  // console.log({initialData,homeData});
-
-  // React.useEffect(() => {
-  //   if (homeData === undefined) {
-  //     setTimeout(() => {
-  //       setHomeData('home data from client');
-  //     }, 3000);
-  //   }
-  // }, [])
-
-  // const [data, setData] = useData({
-  //   browserUpdate: {
-  //     // iDontCareJustLoad: true,
-  //     ifInitialDataIsUndefined: true,
-  //     load: () => {
-  //       setTimeout(() => {
-  //         setData('home data from client');
-  //       }, 3000);
-  //     },
-  //   }
-  // });
-
   console.log(data);
   
   return (

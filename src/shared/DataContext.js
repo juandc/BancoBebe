@@ -5,13 +5,15 @@ export const DataContext = React.createContext(undefined);
 export function DataProvider({ initialData = undefined, dataResolvers, children }) {
   const [data, setData] = React.useState(initialData);
 
-  const setDataWithResolvers = async ({dataType, normalize}) => {
+  const setDataWithResolversAndNormalize = async ({ dataType, normalize }) => {
     const newData = await dataResolvers[dataType]();
-    setData(normalize(newData));
+    return setData(normalize(newData));
   };
-  
+
+  console.log(data)
+
   return (
-    <DataContext.Provider value={[ data, setDataWithResolvers ]}>
+    <DataContext.Provider value={[ data, setDataWithResolversAndNormalize ]}>
       {children}
     </DataContext.Provider>
   );
@@ -19,28 +21,21 @@ export function DataProvider({ initialData = undefined, dataResolvers, children 
 
 export const { Consumer: DataConsumer } = DataContext;
 
-// export const useData = ({
-//   fromBrowser: {
-//     ifInitialDataIsUndefined,
-//     iDontCareJustLoad,
-//     load,
-//   },
-// }) => {
-//   // Update for loading data with
-//   // routes "data", must support both,
-//   // initial ssr, reload and just
-//   // static...
-//   let shouldUpdate = false;
-//   const [data, setData] = React.useContext(DataContext);
+export const useData = ({ route }) => {
+  const [data, setData] = React.useContext(DataContext);
+  const { fromBrowser, dataType, normalize } = route.loadData;
 
-//   React.useEffect(() => {
-//     if (
-//       (!!ifInitialDataIsUndefined && data === undefined)
-//       || !!iDontCareJustLoad
-//     ) {
-//       setData(load);
-//     }
-//   }, []);
+  React.useEffect(
+    () => {
+      if (
+        (!!fromBrowser.loadIfNoInitialData && data === undefined)
+        // || (!!fromBrowser.iDontCareJustLoad)
+      ) {
+        setData({ dataType, normalize });
+      }
+    },
+    []
+  );
 
-//   return [data, setData];
-// }
+  return [data, setData];
+}
