@@ -1,7 +1,7 @@
 # BancoBebe
 BB: Somos tu mamá - React Webapp - SSR - PWA - Without Next, CRA, or Gatsby.
 
-⚠️ Warning: No longer manteined. Check [react-chocolate](#proximamente) or [react-router-ultra](#proximamente2).
+⚠️ Warning: No longer maintained. Check [react-chocolate](#proximamente) or [react-router-ultra](#proximamente2).
 
 ## SPA vs. SSR
 
