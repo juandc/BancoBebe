@@ -1,6 +1,8 @@
 # BancoBebe
 BB: Somos tu mamá - React Webapp - SSR - PWA - Without Next, CRA, or Gatsby.
 
+⚠️ Warning: No longer manteined. Check [react-chocolate](#proximamente) or [react-router-ultra](#proximamente2).
+
 ## SPA vs. SSR
 
 This was complicated. I'm a fan of microservices, but in this case the facility and advantages of monorepos for the API and rendering from the server were higher.
