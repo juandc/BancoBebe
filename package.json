@@ -1,0 +1,47 @@
+{
+  "name": "bancobebe",
+  "version": "0.0.3",
+  "description": "React PWA with SSR and Auth. Without Next, CRA, or Gatsby.",
+  "main": "src/server/index.js",
+  "scripts": {
+    "build:server:dev": "webpack --config config/webpack.server.js --mode development",
+    "build:browser:dev": "webpack --config config/webpack.browser.js --mode development",
+    "build:dev": "yarn build:browser:dev && yarn build:server:dev",
+    "build:watch": "concurrently \"yarn build:browser:dev -- --watch\" \"yarn build:server:dev -- --watch\"",
+    "serve:dev": "nodemon build/server",
+    "start:dev": "yarn build:dev && concurrently \"yarn serve:dev\" \"yarn build:watch\"",
+    "build:server": "webpack --config config/webpack.server.js --mode production",
+    "build:browser": "webpack --config config/webpack.browser.js --mode production",
+    "build": "yarn build:browser && yarn build:server",
+    "serve": "node build/server",
+    "start": "yarn build && yarn serve"
+  },
+  "repository": "git@github.com:juandc/BancoBebe.git",
+  "author": "Juan David Castro <me@juandc.co>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@loadable/component": "^5.10.1",
+    "@loadable/server": "^5.9.0",
+    "babel-loader": "^8.0.6",
+    "body-parser": "^1.19.0",
+    "core-js": "2",
+    "express": "^4.17.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devDependencies": {
+    "@loadable/babel-plugin": "^5.10.0",
+    "@loadable/webpack-plugin": "^5.7.1",
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.19.1"
+  }
+}
